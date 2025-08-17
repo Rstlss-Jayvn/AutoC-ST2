@@ -1,11 +1,11 @@
 {
   "display_name": "AutoCards ST",
-  "author": "You",
+  "author": "Rstlss-Jayvn",
   "version": "0.2.2",
   "js": "index.js",
   "css": "style.css",
   "loading_order": 10,
-  "homePage": "https://docs.sillytavern.app/for-contributors/writing-extensions/",
+  "homePage": "https://github.com/Rstlss-Jayvn/AutoC-ST2",
   "auto_update": true,
   "generate_interceptor": "AutoCardsST_Interceptor"
 }
