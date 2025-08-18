@@ -354,24 +354,24 @@
   }
 
   // ---------- Prompt interceptor ----------
-  globalThis.AutoCardsST_Interceptor = async function ({ injectionArray }) {
-    try {
-      const s = getSettings();
-      if (!s.enabled || !s.injectOnGenerate) return;
-      const list = listFromEntries(entriesForThisChat());
-      if (!Array.isArray(injectionArray) || !list.length) return;
-
-      const combined = list.map(e => `• ${e.keys.join(', ')} — ${e.content}`).join('\n');
-      if (combined) {
-        injectionArray.push({
-          role: 'system',
-          text: `World Info (temporary, chat ${getChatKey()}):\n${combined}`
-        });
-      }
-    } catch (err) {
-      console.warn('[AutoCards ST] Interceptor error:', err);
+  // Minimal interceptor to prove the extension loads
+globalThis.AutoCardsST_Interceptor = async function ({ injectionArray }) {
+  try {
+    // Optional: add a small marker into the prompt so you see it working
+    if (Array.isArray(injectionArray)) {
+      injectionArray.push({
+        role: 'system',
+        text: 'AutoCards ST interceptor is active.'
+      });
     }
-  };
+    // Optional toast so you see it on page load (if ST.toast exists)
+    const ST = globalThis.SillyTavern?.getContext?.();
+    ST?.toast?.('AutoCards ST: interceptor loaded');
+  } catch (e) {
+    console.warn('AutoCards ST: interceptor error', e);
+  }
+};
+
 
   // ---------- Auto-scan ----------
   function maybeAutoscan() {
